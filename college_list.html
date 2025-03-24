@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College List</title>
+</head>
+<body>
+    <h1>List of Colleges</h1>
+    <ul>
+        {% for college in colleges %}
+            <li>{{ college.name }} - {{ college.location }}</li>  <!-- Adjust the fields as per your DB schema -->
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_college') }}">Add New College</a>  <!-- Example link to add new college -->
+</body>
+</html>

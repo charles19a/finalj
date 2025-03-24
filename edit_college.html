@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit College</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit College Details</h2>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('edit_college', c_id=college.c_id) }}" method="POST">
+            <label for="college_name">College Name:</label>
+            <input type="text" id="collegename" name="collegename" value="{{ college.collegename }}" required>
+
+            <label for="affiliation">Affiliation:</label>
+            <input type="text" id="affiliation" name="affiliation" value="{{ college.affiliation }}" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="{{ college.location }}" required>
+
+            <label for="branch">Branch:</label>
+            <input type="text" id="branch" name="branch" value="{{ college.branch }}" required>
+
+            <label for="seats">Seats:</label>
+            <input type="number" id="seats" name="seats" value="{{ college.seats }}" required>
+
+            <label for="cutoff">Cutoff Score:</label>
+            <input type="number" step="0.1" id="cutoff" name="cutoff" value="{{ college.cutoff }}" required>
+
+            <label for="tnea_code">TNEA Code:</label>
+            <input type="number" id="tnea_code" name="tnea_code" value="{{ college.tnea_code }}" required>
+
+            <button type="submit">Update College</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('add') }}">Back to College List</a>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            background: url('https://img.freepik.com/free-vector/hand-drawn-school-supplies-pattern-background_23-2150855728.jpg')
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .flash {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .flash.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .flash.danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</body>
+</html>

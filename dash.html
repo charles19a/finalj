@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Report</title>
+    
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Plugin for data labels -->
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+
+        h1, h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        canvas {
+            max-width: 100%;
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Admin Dashboard Report</h1>
+
+    <div class="info-box">
+        Total Registered Students: <span id="totalStudents"></span>
+    </div>
+
+    <h3>📌 Cutoff Distribution</h3>
+    <canvas id="cutoffChart"></canvas>
+
+    <h3>🏛️ College-Wise Cutoff</h3>
+    <canvas id="collegeChart"></canvas>
+
+    <h3>👥 Category-wise Student Distribution</h3>
+    <canvas id="categoryChart"></canvas>
+
+    <h3>🏆 Rank Distribution</h3>
+    <canvas id="rankChart"></canvas>
+</div>
+
+<script>
+    // Enable Chart.js plugin for data labels
+    Chart.register(ChartDataLabels);
+
+    // Data from Flask (Replace with actual data in the template)
+    var totalStudents = {{ total_students | tojson }};
+    var cutoffRanges = {{ cutoff_ranges | tojson }};
+    var cutoffCounts = {{ cutoff_counts | tojson }};
+    var collegeNames = {{ college_names | tojson }};
+    var collegeCutoffs = {{ college_cutoffs | tojson }};
+    var categoryLabels = {{ category_labels | tojson }};
+    var categoryCounts = {{ category_counts | tojson }};
+    var rankLabels = {{ rank_labels | tojson }};
+    var rankCounts = {{ rank_counts | tojson }};
+
+    // Set total students count
+    document.getElementById("totalStudents").innerText = totalStudents;
+
+    function createBarChart(canvasId, labels, data, bgColor, borderColor, labelText) {
+        new Chart(document.getElementById(canvasId), {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: labelText,
+                    data: data,
+                    backgroundColor: bgColor,
+                    borderColor: borderColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: 'black',
+                        font: { weight: 'bold', size: 14 }
+                    }
+                },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+
+    // Create Charts
+    createBarChart("cutoffChart", cutoffRanges, cutoffCounts, "#007bff", "#0056b3", "Number of Students");
+    createBarChart("collegeChart", collegeNames, collegeCutoffs, "#28a745", "#218838", "Cutoff Score");
+    createBarChart("categoryChart", categoryLabels, categoryCounts, "#ffc107", "#e0a800", "Number of Students");
+    createBarChart("rankChart", rankLabels, rankCounts, "#dc3545", "#c82333", "Students per Rank Range");
+
+</script>
+
+</body>
+</html>

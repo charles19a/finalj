@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNEA Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        header h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .result-section {
+            text-align: center;
+        }
+
+        #result-form {
+            margin-bottom: 20px;
+        }
+
+        #result-form input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #result-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result-form button:hover {
+            background-color: #45a049;
+        }
+
+        .result-display {
+            display: none;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        #college-choice {
+            display: none;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TNEA Result - 2025</h1>
+        </header>
+
+        <section class="result-section">
+            <h2>Enter Your Registration Details</h2>
+            <form id="result-form">
+                <input type="text" id="name" placeholder="Enter your Name" required>
+                <input type="text" id="reg-number" placeholder="Enter 12-digit Registration Number" required>
+                <input type="date" id="dob" required>
+                <button type="submit">Check Result</button>
+            </form>
+
+            <!-- Display Result Section -->
+            <div id="result-display" class="result-display">
+                <h3>Result Details:</h3>
+                <p id="student-name"></p>
+                <p id="result-status"></p>
+                <p id="rank"></p>
+                
+                <!-- College Choices -->
+                <div id="college-choice">
+                    <h4>Choose Your College:</h4>
+                    <button id="college1" class="college-button">College A</button>
+                    <button id="college2" class="college-button">College B</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Tamil Nadu Engineering Admissions</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('result-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const regNumber = document.getElementById('reg-number').value;
+            const dob = document.getElementById('dob').value;
+
+            // Simulate result (you can replace this with real logic to fetch results)
+            const resultStatus = "Selected for College A"; // Sample result, can be dynamic
+            const rank = "Rank: 15"; // Sample rank
+
+            // Display result
+            document.getElementById('student-name').textContent = "Name: " + name;
+            document.getElementById('result-status').textContent = "Status: " + resultStatus;
+            document.getElementById('rank').textContent = rank;
+
+            // Show college choices
+            document.getElementById('college-choice').style.display = 'block';
+            document.getElementById('result-display').style.display = 'block';
+
+            // Optionally hide the form after submission
+            document.getElementById('result-form').style.display = 'none';
+        });
+
+        // Handle college selection
+        document.getElementById('college1').addEventListener('click', function () {
+            alert('You have selected College A');
+        });
+
+        document.getElementById('college2').addEventListener('click', function () {
+            alert('You have selected College B');
+        });
+    </script>
+</body>
+</html>

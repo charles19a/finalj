@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <style>
+        body {
+            font-family: 'Times New Roman', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapers.com/images/hd/college-background-livv32ma9zxjii0i.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #00bcd4;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0097a7;
+        }
+
+        /* Announcement Section */
+        .announcement-bar {
+            width: 100%;
+            background-color: #ffcc00;
+            color: #000;
+            font-size: 1.2em;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+
+        .announcement-text {
+            display: inline-block;
+            animation: scrollText 10s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Section -->
+    <div class="announcement-bar">
+        <div class="announcement-text">🚀 Round 1 Results Announced! Check your results now on the Results Page. Stay tuned for Round 2 announcements. Best of luck! 🎉</div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to the TNEA College Counseling System!</h1>
+        <p>Our platform helps students get into colleges based on their academic scores in a clear and easy way.</p>
+        <p>Counseling happens in several rounds to fairly assign seats. The admin announces each round, and students are informed if they are eligible. After choosing their preferred colleges, students can check their results once the round ends.</p>
+        <p>This system is completely free, making it easier for students to access higher education. It uses automated rank calculations and cutoff scores to make the admission process simple and fair.</p>
+        <p>If you need any help, our support team is ready to assist you!</p>
+        <h2>contact us:tnea@gmail.com</h2>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

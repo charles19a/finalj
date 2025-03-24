@@ -1,0 +1,38 @@
+c_id	int	NO	PRI		auto_increment
+collegename	varchar(25)	NO			
+affiliation	varchar(25)	NO			
+location	varchar(25)	NO			
+branch	varchar(10)	NO			
+seats	int	NO			
+cutoff	float	NO			
+tnea_code	int	NO		
+
+
+
+
+
+
+student register table
+id	int	NO	PRI		auto_increment
+name	varchar(20)	NO			
+dob	date	NO			
+gender	enum('Male','Female','Other')	NO			
+email	varchar(50)	YES	UNI		
+phone	varchar(15)	NO	UNI		
+aadhaar	varchar(12)	NO	UNI		
+address	text	NO			
+state	varchar(20)	NO			
+district	varchar(20)	NO			
+pincode	varchar(6)	NO			
+school_12th	varchar(25)	NO			
+board_12th	varchar(20)	NO			
+marks_math	int	YES			
+marks_physics	int	YES			
+marks_chemistry	int	YES			
+cutoff	decimal(5,2)	NO			
+community	varchar(50)	NO			
+tamil_medium	varchar(30)	NO			
+first_graduate	varchar(30)	NO			
+marks	int	YES			
+student_rank	int	YES			
+counseling_round	int	YES				

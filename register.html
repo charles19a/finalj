@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNEA Student Registration</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1_Dt5tBGSropqyYO2pxT-jDV_g23Bn5Wlxg&s");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin: 8px 0 5px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+    <script>
+        function calculateCutoff() {
+            let math = parseFloat(document.getElementById('marks_math').value) || 0;
+            let physics = parseFloat(document.getElementById('marks_physics').value) || 0;
+            let chemistry = parseFloat(document.getElementById('marks_chemistry').value) || 0;
+
+            let cutoff = (math) + (physics / 2) + (chemistry / 2);
+
+            document.getElementById('cutoff').value = cutoff.toFixed(2); // Display with 2 decimal places
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>TNEA Student Registration</h2>
+        <form method="POST" action="/register">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Mobile Number:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="aadhaar">Aadhaar Number:</label>
+            <input type="text" id="aadhaar" name="aadhaar" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">State</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" required>
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required>
+
+            <label for="school_12th">12th Grade School Name:</label>
+            <input type="text" id="school_12th" name="school_12th" required>
+
+            <label for="board_12th">12th Grade Board:</label>
+            <input type="text" id="board_12th" name="board_12th" required>
+
+            <label for="marks_math">Marks in Mathematics:</label>
+            <input type="number" id="marks_math" name="marks_math" required oninput="calculateCutoff()">
+
+            <label for="marks_physics">Marks in Physics:</label>
+            <input type="number" id="marks_physics" name="marks_physics" required oninput="calculateCutoff()">
+
+            <label for="marks_chemistry">Marks in Chemistry:</label>
+            <input type="number" id="marks_chemistry" name="marks_chemistry" required oninput="calculateCutoff()">
+
+            <!-- Automatically Calculated Cutoff -->
+            <label for="cutoff">Cutoff Marks:</label>
+            <input type="text" id="cutoff" name="cutoff" readonly>
+
+            <label for="community">Community Category:</label>
+            <select id="community" name="community" required>
+                <option value="General">General</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="tamil_medium">Tamil Medium (Yes/No):</label>
+            <input type="text" id="tamil_medium" name="tamil_medium" required>
+
+            <label for="first_graduate">First Graduate (Yes/No):</label>
+            <input type="text" id="first_graduate" name="first_graduate" required>
+
+            <label for="marks">12th Mark</label>
+            <input type="int" id="marks" name="marks" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

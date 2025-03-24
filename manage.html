@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Colleges</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapers.com/images/hd/college-background-livv32ma9zxjii0i.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(242, 243, 241, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid rgb(31, 30, 30);
+            padding: 10px;
+            text-align: center;
+            color: rgb(27, 15, 15);
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f3ed;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .edit, .delete {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: rgb(26, 25, 25);
+            border-radius: 5px;
+            width: 48%;
+            text-align: center;
+        }
+
+        .edit {
+            background-color: #d7a0e2;
+        }
+
+        .delete {
+            background-color: #95e9e5;
+        }
+
+        .edit:hover {
+            background-color: #e6acb4;
+        }
+
+        .delete:hover {
+            background-color: #c82333;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .edit, .delete {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Manage Colleges</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>College Name</th>
+                    <th>Affiliation</th>
+                    <th>Location</th>
+                    <th>Branch</th>
+                    <th>Cutoff</th>
+                    <th>Seats</th>
+                    <th>TNEA Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in colleges %}
+                    <tr>
+                        <td>{{ college.collegename }}</td>
+                        <td>{{ college.affiliation }}</td>
+                        <td>{{ college.location }}</td>
+                        <td>{{ college.branch }}</td>
+                        <td>{{ college.cutoff }}</td>
+                        <td>{{ college.seats }}</td>
+                        <td>{{ college.tnea_code }}</td>
+                        <td class="actions">
+                            <a href="/edit_college/{{ college.c_id }}" class="edit">Edit</a>
+                            <a href="/delete_college/{{ college.c_id }}" class="delete">Delete</a>                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/admindashboard" class="back-btn">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>
