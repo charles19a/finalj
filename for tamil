@@ -1,0 +1,11 @@
+for tamil medumin and categor reservation
+UPDATE student
+SET reservation_category = '7.5% Reservation'
+WHERE tamil_medium = 'Yes'
+AND counseling_round = 1
+ORDER BY cutoff DESC
+LIMIT @reserved_seats;
+
+SET @total_seats = (SELECT COUNT(*) FROM student WHERE counseling_round = 1);
+SET @reserved_seats = ROUND(@total_seats * 7.5 / 100);
+SELECT @reserved_seats AS Reserved_Seats;
