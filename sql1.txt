@@ -1,0 +1,78 @@
+
+UPDATE student AS s
+JOIN ( 
+    SELECT id, (@rank := @rank + 1) AS new_rank
+    FROM student, (SELECT @rank := 0) AS r
+    ORDER BY cutoff DESC, dob ASC
+) AS ranked
+ON s.id = ranked.id
+SET s.student_rank = ranked.new_rank;
+ select name,cutoff,dob,email,student_rank,counseling_round from student;
+ 
+ SELECT student_rank, COUNT(*) AS rank_count
+FROM student
+WHERE student_rank IS NOT NULL
+GROUP BY student_rank
+HAVING COUNT(*) > 1;
+ 
+UPDATE student
+SET counseling_round = 2
+WHERE student_rank > 60 AND id IS NOT NULL;
+
+UPDATE student
+SET counseling_round = 1
+WHERE student_rank <= 30;
+
+UPDATE student
+SET counseling_round = 2
+WHERE student_rank > 30;
+
+
+
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+SELECT id, name, student_rank, counseling_round
+FROM student
+WHERE student_rank > 60;
+
+
+SELECT id, name, student_rank 
+FROM student 
+WHERE student_rank IS NULL;
+SET @total_seats = (SELECT COUNT(*) FROM student WHERE counseling_round = 1);
+SET @reserved_seats = ROUND(@total_seats * 7.5 / 100);
+SELECT @reserved_seats AS Reserved_Seats;
+
+use tneaa;
+
+SELECT COUNT(*) AS total_seats FROM student WHERE counseling_round = 1;
+
+select marks,name from student  where marks > 480 order by marks ;
+SELECT marks, name 
+FROM student 
+WHERE marks > 480 
+ORDER BY marks DESC;
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+
+select counseling_round from student where counseling_round=1;
+ 
+ 
+SET SQL_SAFE_UPDATES = 0;
+
+
+alter table student modify  board_12th VARCHAR(50) NOT NULL;
+SELECT COUNT(*) AS records FROM student;
+SELECT MAX(id) AS last_id FROM student;
+
+UPDATE student
+SET counseling_round = 1
+WHERE tamil_medium = 'Yes' AND cutoff > 150;
+
+SET SQL_SAFE_UPDATES = 0;
+
+select * from student;
